@@ -1,0 +1,44 @@
+﻿@page "/fetchdata"
+@inherits FetchDataBase
+
+@using BlazorSvrAppWithClaims.Data
+@using BlazorSvrAppWithClaims.Services
+
+
+
+<h1>API Access</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (Applications == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>App Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var app in Applications)
+            {
+                <tr>
+                    <td>@app</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (!string.IsNullOrWhiteSpace(AppNameSpecific))
+{
+    <p><em>App Specific Name from API is: @AppNameSpecific</em></p>
+}
+
+@if (IsSaveAllowed().Result)
+{
+    <button class="btn btn-success" @onclick="() => SaveApplication()">Save Application</button>
+}

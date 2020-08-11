@@ -1,0 +1,24 @@
+﻿@inherits LayoutComponentBase
+
+<div class="sidebar">
+    <NavMenu />
+</div>
+
+<div class="main">
+    <AuthorizeView Policy="FullAdminPolicy">
+        <Authorized>
+            <div class="top-row px-4">
+                <p>Hello! @context.User.Identity.Name</p>
+            </div>
+            <div class="content px-4">
+                @Body
+            </div>
+        </Authorized>
+        <NotAuthorized>
+            <div class="top-row px-4">
+                <p>Hello Demo User</p>
+            </div>
+        </NotAuthorized>
+    </AuthorizeView>
+    
+</div>
